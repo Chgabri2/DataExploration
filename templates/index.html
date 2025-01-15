@@ -17,16 +17,16 @@
 
         {% if data_head %}
             <h2>Data Head</h2>
-            {{ data_head|safe }}
+            <div class="table-container">{{ data_head|safe }}</div>
 
             <h2>Data Types</h2>
-            {{ data_types|safe }}
+            <div class="table-container">{{ data_types|safe }}</div>
 
             <h2>Data Description</h2>
-            {{ data_description|safe }}
+            <div class="table-container">{{ data_description|safe }}</div>
 
             <h2>Number of Null Values</h2>
-            {{ data_null|safe }}
+            <div class="table-container">{{ data_null|safe }}</div>
 
             <h2>Number of Duplicates</h2>
             <p>{{ data_duplicates }}</p>
@@ -34,7 +34,7 @@
             <h2>Value Counts</h2>
             {% for col, value_count in value_counts.items() %}
                 <h3>{{ col }}</h3>
-                {{ value_count|safe }}
+                <div class="table-container">{{ value_count|safe }}</div>
             {% endfor %}
 
             <h2>Data Distribution</h2>

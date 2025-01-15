@@ -26,10 +26,13 @@ def index():
 
             numerical_columns = data.select_dtypes(include=['int64', 'float64']).columns
 
+            # Use different colors for plots
+            palette = sns.color_palette("husl", len(numerical_columns))
+
             data_distribution = {}
-            for col in numerical_columns:
+            for col, color in zip(numerical_columns, palette):
                 plt.figure()
-                sns.histplot(data[col], kde=True)
+                sns.histplot(data[col], kde=True, color=color)
                 plt.title(f'Distribution of {col}')
                 img = io.BytesIO()
                 plt.savefig(img, format='png')
@@ -51,9 +54,9 @@ def index():
             plt.close()
 
             outliers = {}
-            for col in numerical_columns:
+            for col, color in zip(numerical_columns, palette):
                 plt.figure()
-                sns.boxplot(y=data[col])
+                sns.boxplot(y=data[col], color=color)
                 plt.title(f'Box Plot of {col}')
                 img = io.BytesIO()
                 plt.savefig(img, format='png')
@@ -67,7 +70,7 @@ def index():
                 for j, col2 in enumerate(numerical_columns):
                     if i != j:
                         plt.figure()
-                        sns.scatterplot(x=data[col1], y=data[col2])
+                        sns.scatterplot(x=data[col1], y=data[col2], color=palette[i % len(palette)])
                         plt.title(f'Scatter Plot of {col1} vs {col2}')
                         img = io.BytesIO()
                         plt.savefig(img, format='png')
@@ -79,7 +82,7 @@ def index():
             bar_plots = {}
             for col in categorical_columns:
                 plt.figure()
-                sns.countplot(y=data[col], order=data[col].value_counts().index)
+                sns.countplot(y=data[col], order=data[col].value_counts().index, palette='husl')
                 plt.title(f'Bar Plot of {col}')
                 img = io.BytesIO()
                 plt.savefig(img, format='png')
