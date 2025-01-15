@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light grey background */
+    text-align: center; /* Center-align text in the body */
+}
+
+.container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color:  #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners for a softer look */
+    text-align: center; /* Center-align text in the container */
+}
+
+h1, h2, h3 {
+    color: #333;
+    text-align: center; /* Center-align headings */
+}
+
+h1 {
+    margin-top: 0;
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+form {
+    text-align: center; /* Center-align form */
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+
+input[type="submit"] {
+    display: block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.img-container, .img-container-vertical {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/*.img-container-vertical {*/
+/*    flex-direction: column;*/
+/*    align-items: center; !* Center-align items vertically *!*/
+/*}*/
+
+.img-box {
+    flex: 1 1 calc(45% - 20px); /* Adjust the flexbox items to take up nearly half the width */
+    box-sizing: border-box;
+    text-align: center; /* Center-align images within the box */
+}
+
+/*.img-box-vertical {*/
+/*    flex: 1 1 100%; !* Make vertical boxes take full width *!*/
+/*    box-sizing: border-box;*/
+/*    text-align: center; !* Center-align images within the box *!*/
+/*}*/
+
+.img-box img, .img-box-vertical img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center-align tables */
+table {
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.spinner {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+

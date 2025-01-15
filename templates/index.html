@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Exploration App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="spinner" id="spinner"></div>
+    </div>
+    <div class="container">
+        <h1>Upload CSV File for Data Exploration</h1>
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <input type="submit" value="Upload">
+        </form>
+
+        {% if data_head %}
+            <h2>Data Head</h2>
+            {{ data_head|safe }}
+
+            <h2>Data Types</h2>
+            {{ data_types|safe }}
+
+            <h2>Data Description</h2>
+            {{ data_description|safe }}
+
+            <h2>Number of Null Values</h2>
+            {{ data_null|safe }}
+
+            <h2>Number of Duplicates</h2>
+            <p>{{ data_duplicates }}</p>
+
+            <h2>Value Counts</h2>
+            {% for col, value_count in value_counts.items() %}
+                <h3>{{ col }}</h3>
+                {{ value_count|safe }}
+            {% endfor %}
+
+            <h2>Data Distribution</h2>
+            <div class="img-container">
+                {% for col, distribution_path in data_distribution.items() %}
+                    <div class="img-box">
+                        <h3>{{ col }}</h3>
+                        <img src="{{ distribution_path }}" alt="{{ col }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2>Correlation Matrix</h2>
+            <div class="img-box">
+                <img src="{{ correlation_matrix_path }}" alt="Correlation Matrix" style="width: 100%; max-width: 600px;">
+            </div>
+
+            <h2>Outliers</h2>
+            <div class="img-container">
+                {% for col, outlier_path in outliers.items() %}
+                    <div class="img-box">
+                        <h3>{{ col }}</h3>
+                        <img src="{{ outlier_path }}" alt="{{ col }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2>Scatter Plots</h2>
+            <div class="img-container">
+                {% for key, scatter_path in scatter_plots.items() %}
+                    <div class="img-box">
+                        <h3>{{ key }}</h3>
+                        <img src="{{ scatter_path }}" alt="{{ key }}">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <h2>Bar Plots</h2>
+            <div class="img-container">
+                {% for col, bar_plot_path in bar_plots.items() %}
+                    <div class="img-box">
+                        <h3>{{ col }}</h3>
+                        <img src="{{ bar_plot_path }}" alt="{{ col }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('spinner').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
